@@ -2094,10 +2094,10 @@ class ConvLSTMCell(rnn_cell_impl.RNNCell):
       self._total_output_channels += self._input_shape[-1]
 
     state_size = tensor_shape.TensorShape(
-        self._input_shape[:-1] + [self._output_channels])
+        self._input_shape[:-1] + (self._output_channels,))
     self._state_size = rnn_cell_impl.LSTMStateTuple(state_size, state_size)
     self._output_size = tensor_shape.TensorShape(
-        self._input_shape[:-1] + [self._total_output_channels])
+        self._input_shape[:-1] + (self._total_output_channels,))
 
   @property
   def output_size(self):
